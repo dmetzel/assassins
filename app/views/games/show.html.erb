@@ -31,6 +31,12 @@
               <dt>Time zone</dt>
               <dd><%= @game.time_zone %></dd>
 
+              <dt>Users</dt>
+              <dd><% @game.users.all.each do |user| %>
+<%= user.id %>
+<br>
+              <% end %></dd>
+
             </dl>
             <div class="btn-group btn-group-justified">
               <a href="/games" class="btn btn-primary">
