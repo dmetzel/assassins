@@ -1,0 +1,55 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Game #<%= @game.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Title</dt>
+              <dd><%= @game.title %></dd>
+
+              <dt>Description</dt>
+              <dd><%= @game.description %></dd>
+
+              <dt>Rules</dt>
+              <dd><%= @game.rules %></dd>
+
+              <dt>Start time</dt>
+              <dd><%= @game.start_time %></dd>
+
+              <dt>Kill window</dt>
+              <dd><%= @game.kill_window %></dd>
+
+              <dt>Gamemaster</dt>
+              <dd><%= @game.gamemaster_id %></dd>
+
+              <dt>Time zone</dt>
+              <dd><%= @game.time_zone %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/games" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/games/<%= @game.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_game/<%= @game.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

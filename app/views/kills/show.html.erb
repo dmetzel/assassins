@@ -1,0 +1,49 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Kill #<%= @kill.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Victim</dt>
+              <dd><%= @kill.victim_id %></dd>
+
+              <dt>Kill time</dt>
+              <dd><%= @kill.kill_time %></dd>
+
+              <dt>Kill story</dt>
+              <dd><%= @kill.kill_story %></dd>
+
+              <dt>User</dt>
+              <dd><%= @kill.user_id %></dd>
+
+              <dt>Game</dt>
+              <dd><%= @kill.game_id %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/kills" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/kills/<%= @kill.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_kill/<%= @kill.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

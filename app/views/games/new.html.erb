@@ -1,0 +1,110 @@
+<!-- Validation failure messages -->
+
+<% if @game.errors.any? %>
+  <% @game.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Game</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_game" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for title -->
+          <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">
+              Title
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @game.title %>">
+            </div>
+          </div>
+
+          <!-- Label and input for description -->
+          <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">
+              Description
+            </label>
+            <div class="col-sm-10">
+              <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @game.description %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for rules -->
+          <div class="form-group">
+            <label for="rules" class="col-sm-2 control-label">
+              Rules
+            </label>
+            <div class="col-sm-10">
+              <textarea id="rules" name="rules" placeholder="Rules" class="form-control" rows="3"><%= @game.rules %></textarea>
+            </div>
+          </div>
+
+          <!-- Label and input for start_time -->
+          <div class="form-group">
+            <label for="start_time" class="col-sm-2 control-label">
+              Start time
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="start_time" name="start_time" placeholder="Start time" class="form-control" value="<%= @game.start_time %>">
+            </div>
+          </div>
+
+          <!-- Label and input for kill_window -->
+          <div class="form-group">
+            <label for="kill_window" class="col-sm-2 control-label">
+              Kill window
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="kill_window" name="kill_window" placeholder="Kill window" class="form-control" value="<%= @game.kill_window %>">
+            </div>
+          </div>
+
+          <!-- Label and input for gamemaster_id -->
+          <div class="form-group">
+            <label for="gamemaster_id" class="col-sm-2 control-label">
+              Gamemaster
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="gamemaster_id" name="gamemaster_id" placeholder="Gamemaster" class="form-control" value="<%= @game.gamemaster_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for time_zone -->
+          <div class="form-group">
+            <label for="time_zone" class="col-sm-2 control-label">
+              Time zone
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="time_zone" name="time_zone" placeholder="Time zone" class="form-control" value="<%= @game.time_zone %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Game
+              </button>
+              or
+              <a href="/games">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

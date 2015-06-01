@@ -1,4 +1,55 @@
 Rails.application.routes.draw do
+  # Routes for the Enrollment resource:
+  # CREATE
+  get "/enrollments/new", :controller => "enrollments", :action => "new"
+  post "/create_enrollment", :controller => "enrollments", :action => "create"
+
+  # READ
+  get "/enrollments", :controller => "enrollments", :action => "index"
+  get "/enrollments/:id", :controller => "enrollments", :action => "show"
+
+  # UPDATE
+  get "/enrollments/:id/edit", :controller => "enrollments", :action => "edit"
+  post "/update_enrollment/:id", :controller => "enrollments", :action => "update"
+
+  # DELETE
+  get "/delete_enrollment/:id", :controller => "enrollments", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Game resource:
+  # CREATE
+  get "/games/new", :controller => "games", :action => "new"
+  post "/create_game", :controller => "games", :action => "create"
+
+  # READ
+  get "/games", :controller => "games", :action => "index"
+  get "/games/:id", :controller => "games", :action => "show"
+
+  # UPDATE
+  get "/games/:id/edit", :controller => "games", :action => "edit"
+  post "/update_game/:id", :controller => "games", :action => "update"
+
+  # DELETE
+  get "/delete_game/:id", :controller => "games", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Kill resource:
+  # CREATE
+  get "/kills/new", :controller => "kills", :action => "new"
+  post "/create_kill", :controller => "kills", :action => "create"
+
+  # READ
+  get "/kills", :controller => "kills", :action => "index"
+  get "/kills/:id", :controller => "kills", :action => "show"
+
+  # UPDATE
+  get "/kills/:id/edit", :controller => "kills", :action => "edit"
+  post "/update_kill/:id", :controller => "kills", :action => "update"
+
+  # DELETE
+  get "/delete_kill/:id", :controller => "kills", :action => "destroy"
+  #------------------------------
+
   devise_for :users
   root 'home#index'
 

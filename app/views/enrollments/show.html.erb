@@ -1,0 +1,61 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enrollment #<%= @enrollment.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Killed by</dt>
+              <dd><%= @enrollment.killed_by %></dd>
+
+              <dt>Dead</dt>
+              <dd><%= @enrollment.dead %></dd>
+
+              <dt>Autokilled</dt>
+              <dd><%= @enrollment.autokilled %></dd>
+
+              <dt>Confirmed</dt>
+              <dd><%= @enrollment.confirmed %></dd>
+
+              <dt>Game</dt>
+              <dd><%= @enrollment.game_id %></dd>
+
+              <dt>User order</dt>
+              <dd><%= @enrollment.user_order %></dd>
+
+              <dt>Kill time</dt>
+              <dd><%= @enrollment.kill_time %></dd>
+
+              <dt>Alias</dt>
+              <dd><%= @enrollment.alias %></dd>
+
+              <dt>User</dt>
+              <dd><%= @enrollment.user_id %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/enrollments" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
+              <a href="/enrollments/<%= @enrollment.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+
+              <a href="/delete_enrollment/<%= @enrollment.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
