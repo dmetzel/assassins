@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'games#index'
+
   # Routes for the Enrollment resource:
   # CREATE
   get "/enrollments/new", :controller => "enrollments", :action => "new"
@@ -51,7 +53,7 @@ Rails.application.routes.draw do
   #------------------------------
 
   devise_for :users
-  root 'home#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
