@@ -17,7 +17,7 @@
 
 <div class="row isotope-container">
 <% @games.each do |game| %>
-<% #if  game.users.id.all.include? current_user.id %>
+<% if  game.users.all.include? current_user %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <% #end %>
+  <% end %>
 <% end %>
 </div>
 
