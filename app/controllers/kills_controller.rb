@@ -23,7 +23,12 @@ class KillsController < ApplicationController
     @kill.game_id = params[:game_id]
 
     if @kill.save
-      redirect_to "/kills", :notice => "Kill created successfully."
+      enroll = Enrollment.where({user_id: @kill.victim_id, game_id: @kill.game_id}).first
+      enroll.dead = true
+      enroll.killed_by = current_user.id
+      enroll.kill_time = @kill.kill_time
+      enroll.save
+      redirect_to "/kills", :notice => "Kill successfully recorded! Awaiting confirmation by your victim."
     else
       render 'new'
     end

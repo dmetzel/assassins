@@ -28,7 +28,7 @@
               Victim
             </label>
             <div class="col-sm-10">
-              <input type="text" id="victim_id" name="victim_id" placeholder="Victim" class="form-control" value="<%= @kill.victim_id %>" >
+              <%= User.find(@kill.victim_id).first_name + " " + User.find(@kill.victim_id).last_name %>
             </div>
           </div>
 
@@ -38,7 +38,7 @@
               Kill time
             </label>
             <div class="col-sm-10">
-              <input type="text" id="kill_time" name="kill_time" placeholder="Kill time" class="form-control" value="<%= @kill.kill_time %>">
+              <input type="text" id="kill_time" name="kill_time" placeholder="Kill time" class="form-control" value="<%= @kill.kill_time %>" disabled>
             </div>
           </div>
 
@@ -52,23 +52,13 @@
             </div>
           </div>
 
-          <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="col-sm-2 control-label">
-              User
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @kill.user_id %>">
-            </div>
-          </div>
-
           <!-- Label and input for game_id -->
           <div class="form-group">
             <label for="game_id" class="col-sm-2 control-label">
               Game
             </label>
             <div class="col-sm-10">
-              <input type="text" id="game_id" name="game_id" placeholder="Game" class="form-control" value="<%= @kill.game_id %>">
+              <%= @kill.game_id %>
             </div>
           </div>
 

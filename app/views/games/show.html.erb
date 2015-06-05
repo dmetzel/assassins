@@ -9,19 +9,27 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
+            <% if @next_enroll.user == current_user %>
+            <p>YOU WON!</p>
+            <% else %>
             <dl class="dl-horizontal">
               <dt>Your target</dt>
-              <dd><%= @target.html_safe %></dd>
+              <dd><%= @next_enroll.user.first_name + " " + @next_enroll.user.last_name %></dd>
+              <% if !@confirmed %>
+              <dd>(your kill has been recorded but is awaiting confirmation by your victim)</dd>
+              <% end %>
 
               <dt>Kill deadline</dt>
               <dd></dd>
             </dl>
-           <div class="btn-group btn-group-justified">
-                <a href="/kills/new/<%= @game.id %>/<%=  %>" class="btn btn-success">
-                  Report a kill
-                </a>
 
-              </div>
+            <div class="btn-group btn-group-justified">
+            <a href="/kills/new/<%= @game.id %>/<%= @next_enroll.user.id %>" class="btn btn-success">
+                Report a kill
+              </a>
+
+            </div>
+            <% end %>
           </div>
         </div>
         <div class="row">
@@ -45,17 +53,17 @@
               <dt>Time zone</dt>
               <dd><%= @game.time_zone %></dd>
 
-              </dl>
-              <div class="btn-group btn-group-justified">
-                <a href="/games" class="btn btn-primary">
-                  <i class="fa fa-chevron-left"></i>
-                </a>
-              </div>
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/games" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- End responsive panel example -->
+<!-- End responsive panel example -->
