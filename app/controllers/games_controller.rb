@@ -5,6 +5,11 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+
+    this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
+    next_enroll = Enrollment.where({user_order: this_enroll.user_order + 1, game_id: @game.id}).first
+    @target = next_enroll.user.first_name + " " + next_enroll.user.last_name
+
   end
 
   def new
