@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_enrollment/:id", :controller => "enrollments", :action => "destroy"
+
+  post "/kill_confirmed/:id", :controller => "enrollments", :action => "confirm"
   #------------------------------
 
   # Routes for the Game resource:
@@ -43,6 +45,9 @@ Rails.application.routes.draw do
   get "/kills/new/:game_id/:victim_id", :controller => "kills", :action => "new"
   post "/create_kill", :controller => "kills", :action => "create"
 
+  # CONFIRM
+  get "/kills/confirm", :controller => "kills", :action => "confirm"
+
   # READ
   get "/kills", :controller => "kills", :action => "index"
   get "/kills/:id", :controller => "kills", :action => "show"
@@ -53,6 +58,8 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_kill/:id", :controller => "kills", :action => "destroy"
+
+
   #------------------------------
 
   devise_for :users

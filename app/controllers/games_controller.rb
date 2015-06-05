@@ -6,10 +6,14 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
 
-    this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
+    @this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
+
     dead = true
     @confirmed = true
-    i = this_enroll.user_order + 1
+    i = @this_enroll.user_order + 1
+    if Enrollment.where({user_order: i, game_id: @game.id}).first == nil
+      i = 0
+    end
     while dead && @confirmed
       @next_enroll = Enrollment.where({user_order: i, game_id: @game.id}).first
       dead = @next_enroll.dead
@@ -21,16 +25,7 @@ class GamesController < ApplicationController
         i = 0
       end
     end
-=begin
-    if next_enroll.user == current_user
-      @target = "YOU WON!"
-    else
-      @target = next_enroll.user.first_name + " " + next_enroll.user.last_name
-      if !confirmed
-        @target += "<br>(your kill has been recorded but is awaiting confirmation by your victim)"
-      end
-    end
-=end
+
   end
 
   def new

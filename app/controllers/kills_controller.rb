@@ -10,7 +10,6 @@ class KillsController < ApplicationController
   def new
     @kill = Kill.new
     @kill.game_id = params[:game_id]
-    @kill.user_id = current_user.id
     @kill.victim_id = params[:victim_id]
   end
 
@@ -19,7 +18,7 @@ class KillsController < ApplicationController
     @kill.victim_id = params[:victim_id]
     @kill.kill_time = params[:kill_time]
     @kill.kill_story = params[:kill_story]
-    @kill.user_id = params[:user_id]
+    @kill.user_id = current_user.id
     @kill.game_id = params[:game_id]
 
     if @kill.save
@@ -60,5 +59,9 @@ class KillsController < ApplicationController
     @kill.destroy
 
     redirect_to "/kills", :notice => "Kill deleted."
+  end
+
+  def confirm
+
   end
 end

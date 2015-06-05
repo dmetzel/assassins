@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <% User.find(current_user.id).enrollments.where({dead: true, confirmed: false}).each do |enroll| %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Confirm death in #<%= enroll.game.title %></h3>
+      </div>
+      <div class="panel-body">
+
+        <dl class="dl-horizontal">
+          <dt>Killed by</dt>
+          <dd><%= User.find(enroll.killed_by).first_name + " " + User.find(enroll.killed_by).last_name %></dd>
+
+          <dt>Killed at</dt>
+          <dd><%= enroll.kill_time %></dd>
+
+        </dl>
+        <form action="/kill_confirmed/<%= enroll.id %>" method="post" class="form-horizontal">
+
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <input type="hidden" id="confirmed" name="confirmed" value="1">
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-danger">
+                Confirm kill
+              </button>
+              or
+              <a href="/games">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <% end %>
+  </div>
+</div>
+
+
+<!-- End responsive panel example -->

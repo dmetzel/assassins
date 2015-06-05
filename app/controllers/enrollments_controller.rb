@@ -54,6 +54,16 @@ class EnrollmentsController < ApplicationController
     end
   end
 
+  def confirm
+    @enrollment = Enrollment.find(params[:id])
+    @enrollment.confirmed = params[:confirmed]
+    if @enrollment.save
+      redirect_to "/games", :notice => "Kill confirmed. Better luck next time!"
+    else
+      render '/kills/confirm'
+    end
+  end
+
   def destroy
     @enrollment = Enrollment.find(params[:id])
 
