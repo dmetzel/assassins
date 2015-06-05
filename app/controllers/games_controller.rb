@@ -7,9 +7,22 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
-    next_enroll = Enrollment.where({user_order: this_enroll.user_order + 1, game_id: @game.id}).first
-    @target = next_enroll.user.first_name + " " + next_enroll.user.last_name
+    dead = true
+    i = 1
+    while dead
+    next_enroll = Enrollment.where({user_order: this_enroll.user_order + i, game_id: @game.id}).first
+    dead = next_enroll.dead
+    i += 1
+    if Enrollment.where({user_order: this_enroll.user_order + i, game_id: @game.id}).first == nil
+      i = 0
+    end
+  end
 
+    if next_enroll.user == current_user
+      @target = "YOU WON!"
+    else
+    @target = next_enroll.user.first_name + " " + next_enroll.user.last_name
+end
   end
 
   def new
