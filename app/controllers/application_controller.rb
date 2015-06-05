@@ -30,4 +30,28 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_target (game, user)
+
+this_enroll = Enrollment.where({user_id: user.id, game_id: game.id}).first
+
+    dead = true
+    confirmed = true
+    i = this_enroll.user_order + 1
+    if Enrollment.where({user_order: i, game_id: game.id}).first == nil
+      i = 0
+    end
+    while dead && @confirmed
+      @next_enroll = Enrollment.where({user_order: i, game_id: @game.id}).first
+      dead = @next_enroll.dead
+      if dead
+        @confirmed = @next_enroll.confirmed
+      end
+      i += 1
+      if Enrollment.where({user_order: i, game_id: @game.id}).first == nil
+        i = 0
+      end
+    end
+
+  end
+
 end

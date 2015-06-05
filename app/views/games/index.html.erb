@@ -21,30 +21,12 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Game #<%= game.id %></h3>
+        <h3 class="panel-title"><%= game.title %></h3>
       </div>
       <div class="panel-body">
         <dl>
-          <dt>Title</dt>
+          <dt>Target</dt>
           <dd><%= game.title %></dd>
-
-          <dt>Description</dt>
-          <dd><%= game.description %></dd>
-
-          <dt>Rules</dt>
-          <dd><%= game.rules %></dd>
-
-          <dt>Start time</dt>
-          <dd><%= game.start_time %></dd>
-
-          <dt>Kill window</dt>
-          <dd><%= game.kill_window %></dd>
-
-          <dt>Gamemaster</dt>
-          <dd><%= game.gamemaster_id %></dd>
-
-          <dt>Time zone</dt>
-          <dd><%= game.time_zone %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
