@@ -9,24 +9,26 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
-            <% if @this_enroll.dead == true %>
+
+            <% if @status == 0 %>
 <p>I'm sorry, you've been killed in this game. Better luck next time!</p>
-            <% elsif @next_enroll.user == current_user %>
+            <% elsif @status == 1 %>
             <p>YOU WON!</p>
             <% else %>
             <dl class="dl-horizontal">
               <dt>Your target</dt>
-              <dd><%= @next_enroll.user.first_name + " " + @next_enroll.user.last_name %></dd>
-              <% if !@confirmed %>
+              <dd><%= @target.first_name + " " + @target.last_name %></dd>
+              <% if @status == 2 %>
               <dd>(your kill has been recorded but is awaiting confirmation by your victim)</dd>
               <% end %>
+
 
               <dt>Kill deadline</dt>
               <dd></dd>
             </dl>
 
             <div class="btn-group btn-group-justified">
-            <a href="/kills/new/<%= @game.id %>/<%= @next_enroll.user.id %>" class="btn btn-success">
+            <a href="/kills/new/<%= @game.id %>/<%= @target.id %>" class="btn btn-success">
                 Report a kill
               </a>
 

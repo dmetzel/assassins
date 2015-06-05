@@ -6,6 +6,9 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
 
+@status, @target = current_target(Game.find(params[:id]),current_user)
+
+=begin
     @this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
 
     dead = true
@@ -25,6 +28,7 @@ class GamesController < ApplicationController
         i = 0
       end
     end
+=end
 
   end
 
