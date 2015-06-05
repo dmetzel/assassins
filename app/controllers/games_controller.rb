@@ -8,12 +8,16 @@ class GamesController < ApplicationController
 
     this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
     dead = true
-    i = 1
-    while dead
-    next_enroll = Enrollment.where({user_order: this_enroll.user_order + i, game_id: @game.id}).first
+    confirmed = true
+    i = this_enroll.user_order + 1
+    while dead && confirmed
+    next_enroll = Enrollment.where({user_order: i, game_id: @game.id}).first
     dead = next_enroll.dead
+    if dead
+      confirmed = next_enroll.confirmed
+    end
     i += 1
-    if Enrollment.where({user_order: this_enroll.user_order + i, game_id: @game.id}).first == nil
+    if Enrollment.where({user_order: i, game_id: @game.id}).first == nil
       i = 0
     end
   end
@@ -22,6 +26,9 @@ class GamesController < ApplicationController
       @target = "YOU WON!"
     else
     @target = next_enroll.user.first_name + " " + next_enroll.user.last_name
+    if !confirmed
+      @target += "<br>(your kill has been recorded but is awaiting confirmation by your victim)"
+    end
 end
   end
 
