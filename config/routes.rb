@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   # Routes for the Kill resource:
   # CREATE
   get "/kills/new", :controller => "kills", :action => "new"
-  get "/kills/new/:id", :controller => "kills", :action => "new"
+  get "/kills/new/:game_id/:victim_id", :controller => "kills", :action => "new"
   post "/create_kill", :controller => "kills", :action => "create"
 
   # READ

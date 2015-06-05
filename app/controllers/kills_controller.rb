@@ -9,9 +9,9 @@ class KillsController < ApplicationController
 
   def new
     @kill = Kill.new
-    @kill.game_id = params[:id]
+    @kill.game_id = params[:game_id]
     @kill.user_id = current_user.id
-    @kill.victim_id = Game.find(params[:id]).enrollments.where({user_id: current_user.id}).first
+    @kill.victim_id = params[:victim_id]
   end
 
   def create

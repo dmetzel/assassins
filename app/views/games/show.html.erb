@@ -4,7 +4,7 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Game #<%= @game.id %></h3>
+        <h3 class="panel-title"><%= @game.title %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -17,7 +17,7 @@
               <dd></dd>
             </dl>
            <div class="btn-group btn-group-justified">
-                <a href="/kills/new/<%= @game.id %>" class="btn btn-primary">
+                <a href="/kills/new/<%= @game.id %>/<%=  %>" class="btn btn-success">
                   Report a kill
                 </a>
 
@@ -26,7 +26,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <dl class="dl-horizontal">
+            <dl class="dl-horizontal" style="margin-top: 21px;">
               <dt>Description</dt>
               <dd><%= @game.description %></dd>
 
@@ -45,24 +45,10 @@
               <dt>Time zone</dt>
               <dd><%= @game.time_zone %></dd>
 
-              <dt>Users</dt>
-              <dd><% @game.enrollments.all.order(user_order: :asc).each do |i| %>
-                <%= i.user.id %>
-                <br>
-                <% end %></dd>
-
               </dl>
               <div class="btn-group btn-group-justified">
                 <a href="/games" class="btn btn-primary">
                   <i class="fa fa-chevron-left"></i>
-                </a>
-
-                <a href="/games/<%= @game.id %>/edit" class="btn btn-warning">
-                  <i class="fa fa-edit"></i>
-                </a>
-
-                <a href="/delete_game/<%= @game.id %>" class="btn btn-danger" rel="nofollow">
-                  <i class="fa fa-trash-o"></i>
                 </a>
               </div>
             </div>
