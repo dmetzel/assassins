@@ -1,0 +1,44 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @game.title %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal" style="margin-top: 21px;">
+              <dt>Description</dt>
+              <dd><%= @game.description %></dd>
+
+              <dt>Rules</dt>
+              <dd><%= @game.rules %></dd>
+
+              <dt>Start time</dt>
+              <dd><%= @game.start_time %></dd>
+
+              <dt>Kill window</dt>
+              <dd><%= @game.kill_window %></dd>
+
+              <dt>Gamemaster</dt>
+              <dd><%= @game.gamemaster_id %></dd>
+
+              <dt>Time zone</dt>
+              <dd><%= @game.time_zone %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <a href="/destroy_game/<%= @game.id %>" class="btn btn-primary">
+                Click to confirm delete
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

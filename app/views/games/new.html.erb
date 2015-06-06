@@ -78,7 +78,7 @@
               Gamemaster
             </label>
             <div class="col-sm-10">
-              <input type="text" id="gamemaster_id" name="gamemaster_id" placeholder="Gamemaster" class="form-control" value="<%= @game.gamemaster_id %>">
+              <input type="text" id="gamemaster_id" name="gamemaster_id" placeholder="Gamemaster" class="form-control" value="<%= current_user.id %>" >
             </div>
           </div>
 

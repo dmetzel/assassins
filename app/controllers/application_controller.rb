@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
 
   def current_target(game, user)
 
+
+
     this_enroll = Enrollment.where({user_id: user.id, game_id: game.id}).first
+
+    return if this_enroll.user_order == nil
 
     if this_enroll.dead == true
       status = 0
@@ -67,12 +71,10 @@ class ApplicationController < ActionController::Base
 
     end
 
-
-
-
-
     return status, target
 
   end
+
+helper_method :current_target
 
 end

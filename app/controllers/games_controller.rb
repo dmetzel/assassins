@@ -1,34 +1,17 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    @games = current_user.games
+    @games += Game.where({gamemaster_id: current_user.id})
+    @games = @games.uniq
+
   end
 
   def show
     @game = Game.find(params[:id])
 
-@status, @target = current_target(Game.find(params[:id]),current_user)
-
-=begin
-    @this_enroll = Enrollment.where({user_id: current_user.id, game_id: @game.id}).first
-
-    dead = true
-    @confirmed = true
-    i = @this_enroll.user_order + 1
-    if Enrollment.where({user_order: i, game_id: @game.id}).first == nil
-      i = 0
+    if current_user.games.include?(@game)
+      @status, @target = current_target(@game,current_user)
     end
-    while dead && @confirmed
-      @next_enroll = Enrollment.where({user_order: i, game_id: @game.id}).first
-      dead = @next_enroll.dead
-      if dead
-        @confirmed = @next_enroll.confirmed
-      end
-      i += 1
-      if Enrollment.where({user_order: i, game_id: @game.id}).first == nil
-        i = 0
-      end
-    end
-=end
 
   end
 
@@ -75,9 +58,18 @@ class GamesController < ApplicationController
     end
   end
 
+  def delete
+    @game = Game.find(params[:id])
+  end
+
   def destroy
     @game = Game.find(params[:id])
-
+    @game.enrollments.each do |i|
+      i.destroy
+    end
+    @game.kills.each do |i|
+      i.destroy
+    end
     @game.destroy
 
     redirect_to "/games", :notice => "Game deleted."

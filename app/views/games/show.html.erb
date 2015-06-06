@@ -9,9 +9,12 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
-
+            <% if @game.gamemaster_id == current_user.id %>
+            <p>You are gamemaster of this game</p>
+            <% end %>
+            <% if @status != nil && @target != nil %>
             <% if @status == 0 %>
-<p>I'm sorry, you've been killed in this game. Better luck next time!</p>
+            <p>I'm sorry, you've been killed in this game. Better luck next time!</p>
             <% elsif @status == 1 %>
             <p>YOU WON!</p>
             <% else %>
@@ -28,11 +31,12 @@
             </dl>
 
             <div class="btn-group btn-group-justified">
-            <a href="/kills/new/<%= @game.id %>/<%= @target.id %>" class="btn btn-success">
+              <a href="/kills/new/<%= @game.id %>/<%= @target.id %>" class="btn btn-success">
                 Report a kill
               </a>
 
             </div>
+            <% end %>
             <% end %>
           </div>
         </div>
@@ -62,6 +66,15 @@
               <a href="/games" class="btn btn-primary">
                 <i class="fa fa-chevron-left"></i>
               </a>
+              <% if @game.gamemaster_id == current_user.id %>
+          <a href="/games/<%= @game.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+
+          <a href="/delete_game/<%= @game.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+          <% end %>
             </div>
           </div>
         </div>

@@ -36,7 +36,8 @@ Rails.application.routes.draw do
   post "/update_game/:id", :controller => "games", :action => "update"
 
   # DELETE
-  get "/delete_game/:id", :controller => "games", :action => "destroy"
+  get "/delete_game/:id", :controller => "games", :action => "delete"
+  get "/destroy_game/:id", :controller => "games", :action => "destroy"
   #------------------------------
 
   # Routes for the Kill resource:
