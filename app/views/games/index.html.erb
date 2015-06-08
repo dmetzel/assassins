@@ -76,7 +76,11 @@
           <dd>Active</dd>
 
           <dt>Your target</dt>
-          <dd><%= @target.first_name + " " + @target.last_name %></dd>
+          <dd><%= @target.first_name + " " %>
+              <% if @target.enrollments.where(game_id: game.id).first.alias != "" && @target.enrollments.where(game_id: game.id).first.alias != nil %>
+                <%= "\"" + @target.enrollments.where(game_id: game.id).first.alias + "\" " %>
+                <% end %>
+                <%= @target.last_name %></dd>
           <% end %>
 
         </dl>

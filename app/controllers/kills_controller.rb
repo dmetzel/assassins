@@ -27,9 +27,9 @@ class KillsController < ApplicationController
       enroll.killed_by = current_user.id
       enroll.kill_time = @kill.kill_time
       enroll.save
-      redirect_to "/kills", :notice => "Kill successfully recorded! Awaiting confirmation by your victim."
+      redirect_to "/games", :notice => "Kill successfully recorded! Awaiting confirmation by your victim."
     else
-      render 'new'
+      redirect_to "/games", :notice => "Kill was not recorded. Please try again."
     end
   end
 

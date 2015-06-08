@@ -12,76 +12,84 @@
             <% if @game.gamemaster_id == current_user.id %>
             <p>You are gamemaster of this game</p>
             <% end %>
-            <% if @status != nil && @target != nil %>
-
-            <% if @status == 0 %>
+            <% case @status %>
+            <% when -3 %>
+            <p>This game has been completed.</p>
+            <% when -2 %>
+            <p>Game in progress - contact Gamemaster (<%= User.find(@game.gamemaster_id).first_name + " " + User.find(@game.gamemaster_id).last_name %>) to receive a target</p>
+            <% when -1 %>
+            <p>Game not yet started</p>
+            <% when 0 %>
             <p>I'm sorry, you've been killed in this game. Better luck next time!</p>
-            <% elsif @status == 1 %>
+            <% when 1 %>
             <p>YOU WON!</p>
             <% else %>
             <dl class="dl-horizontal">
               <dt>Your target</dt>
-              <dd><%= @target.first_name + " " + @target.last_name %></dd>
-              <% if @status == 2 %>
-              <dd>(your kill has been recorded but is awaiting confirmation by your victim)</dd>
+              <dd><%= @target.first_name + " " %>
+              <% if @target.enrollments.where(game_id: @game.id).first.alias != "" && @target.enrollments.where(game_id: @game.id).first.alias != nil %>
+                <%= "\"" + @target.enrollments.where(game_id: @game.id).first.alias + "\" " %>
+                <% end %>
+                <%= @target.last_name %></dd>
+                <% if @status == 2 %>
+                <dd>(your kill has been recorded but is awaiting confirmation by your victim)</dd>
+                <% else %>
+
+
+                <dt>Kill deadline</dt>
+                <dd></dd>
+              </dl>
+
+              <div class="btn-group btn-group-justified">
+                <a href="/kills/new/<%= @game.id %>/<%= @target.id %>" class="btn btn-success">
+                  Report a kill
+                </a>
+                <% end %>
+              </div>
               <% end %>
-
-
-              <dt>Kill deadline</dt>
-              <dd></dd>
-            </dl>
-
-            <div class="btn-group btn-group-justified">
-              <a href="/kills/new/<%= @game.id %>/<%= @target.id %>" class="btn btn-success">
-                Report a kill
-              </a>
-
             </div>
-            <% end %>
-            <% end %>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <dl class="dl-horizontal" style="margin-top: 21px;">
-              <dt>Description</dt>
-              <dd><%= @game.description %></dd>
+          <div class="row">
+            <div class="col-md-12">
+              <dl class="dl-horizontal" style="margin-top: 21px;">
+                <dt>Description</dt>
+                <dd><%= @game.description %></dd>
 
-              <dt>Rules</dt>
-              <dd><%= @game.rules %></dd>
+                <dt>Rules</dt>
+                <dd><%= @game.rules %></dd>
 
-              <dt>Start time</dt>
-              <dd><%= @game.start_time %></dd>
+                <dt>Start time</dt>
+                <dd><%= @game.start_time %></dd>
 
-              <dt>Kill window</dt>
-              <dd><%= @game.kill_window %></dd>
+                <dt>Kill window</dt>
+                <dd><%= @game.kill_window %></dd>
 
-              <dt>Gamemaster</dt>
-              <dd><%= @game.gamemaster_id %></dd>
+                <dt>Gamemaster</dt>
+                <dd><%= @game.gamemaster_id %></dd>
 
-              <dt>Time zone</dt>
-              <dd><%= @game.time_zone %></dd>
+                <dt>Time zone</dt>
+                <dd><%= @game.time_zone %></dd>
 
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <a href="/games" class="btn btn-primary">
-                <i class="fa fa-chevron-left"></i>
-              </a>
-              <% if @game.gamemaster_id == current_user.id %>
-          <a href="/games/<%= @game.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
+              </dl>
+              <div class="btn-group btn-group-justified">
+                <a href="/games" class="btn btn-primary">
+                  <i class="fa fa-chevron-left"></i>
+                </a>
+                <% if @game.gamemaster_id == current_user.id %>
+                <a href="/games/<%= @game.id %>/edit" class="btn btn-warning">
+                  <i class="fa fa-edit"></i>
+                </a>
 
-          <a href="/delete_game/<%= @game.id %>" class="btn btn-danger">
-            <i class="fa fa-trash-o"></i>
-          </a>
-          <% end %>
+                <a href="/delete_game/<%= @game.id %>" class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- End responsive panel example -->
+  <!-- End responsive panel example -->
