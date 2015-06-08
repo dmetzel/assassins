@@ -4,6 +4,8 @@ class GamesController < ApplicationController
     @games += Game.where({gamemaster_id: current_user.id})
     @games = @games.uniq
 
+    @open_games = Game.where({status: -1}).select{|i| !i.users.include?(current_user)}
+
   end
 
   def show
@@ -28,6 +30,7 @@ class GamesController < ApplicationController
     @game.kill_window = params[:kill_window]
     @game.gamemaster_id = params[:gamemaster_id]
     @game.time_zone = params[:time_zone]
+    @game.status = params[:status]
 
     if @game.save
       redirect_to "/games", :notice => "Game created successfully."
@@ -50,6 +53,7 @@ class GamesController < ApplicationController
     @game.kill_window = params[:kill_window]
     @game.gamemaster_id = params[:gamemaster_id]
     @game.time_zone = params[:time_zone]
+    @game.status = params[:status]
 
     if @game.save
       redirect_to "/games", :notice => "Game updated successfully."

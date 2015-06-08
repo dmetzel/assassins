@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Routes for the Enrollment resource:
   # CREATE
-  get "/enrollments/new", :controller => "enrollments", :action => "new"
+  get "/enrollments/new/:game_id", :controller => "enrollments", :action => "new"
   post "/create_enrollment", :controller => "enrollments", :action => "create"
 
   # READ
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_enrollment/:id", :controller => "enrollments", :action => "destroy"
 
+    #Confirm kill
   post "/kill_confirmed/:id", :controller => "enrollments", :action => "confirm"
   #------------------------------
 

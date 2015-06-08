@@ -1,12 +1,12 @@
 <!-- Validation failure messages -->
 
 <% if @game.errors.any? %>
-  <% @game.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @game.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <!-- Responsive panel example -->
@@ -92,19 +92,53 @@
             </div>
           </div>
 
+          <!-- Label and input for status -->
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button class="btn btn-warning">
-                Update Game
-              </button>
-              or
-              <a href="/games/<%= @game.id %>">Cancel</a>
+            <label for="status" class="col-sm-2 control-label">
+              Status
+            </label>
+            <div class="col-sm-10">
+
+              <select name="status" id="status" class="form-control">
+                <%= options_for_select([["Open for registration",-1],["Game in progress",-2],["Finished",-3]],@game.status) %>
+              </select>
             </div>
           </div>
-        </form>
-      </div>
+
+
+          <div class="form-group">
+
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="status" class="col-sm-2 control-label">
+                 <% case @game.status %>
+                 <% when -1 %>
+<input type="checkbox" id="dead" name="dead" value="-2">
+Close enrollments and start game
+                 <% when -2 %>
+                 <input type="checkbox" id="dead" name="dead" value="-2">
+End game
+                 <% when -3 %>
+                 Game has been ended
+                 <% end %>
+               </label>
+             </div>
+           </div>
+         </div>
+
+         <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-warning">
+              Update Game
+            </button>
+            or
+            <a href="/games/<%= @game.id %>">Cancel</a>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 </div>
 
 

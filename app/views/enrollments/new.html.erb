@@ -1,12 +1,12 @@
 <!-- Validation failure messages -->
 
 <% if @enrollment.errors.any? %>
-  <% @enrollment.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @enrollment.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <!-- Responsive panel example -->
@@ -22,81 +22,9 @@
           <!-- Hidden input for authenticity token to protect from forgery -->
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-          <!-- Label and input for killed_by -->
-          <div class="form-group">
-            <label for="killed_by" class="col-sm-2 control-label">
-              Killed by
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="killed_by" name="killed_by" placeholder="Killed by" class="form-control" value="<%= @enrollment.killed_by %>">
-            </div>
-          </div>
+          <input type="hidden" id="game_id" name="game_id" placeholder="Game" class="form-control" value="<%= @enrollment.game_id %>">
 
-          <!-- Label and input for dead -->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label for="dead">
-                  <input type="checkbox" id="dead" name="dead" value="1" <%= "checked" if @enrollment.dead %>>
-                  Dead
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Label and input for autokilled -->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label for="autokilled">
-                  <input type="checkbox" id="autokilled" name="autokilled" value="1" <%= "checked" if @enrollment.autokilled %>>
-                  Autokilled
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Label and input for confirmed -->
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label for="confirmed">
-                  <input type="checkbox" id="confirmed" name="confirmed" value="1" <%= "checked" if @enrollment.confirmed %>>
-                  Confirmed
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Label and input for game_id -->
-          <div class="form-group">
-            <label for="game_id" class="col-sm-2 control-label">
-              Game
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="game_id" name="game_id" placeholder="Game" class="form-control" value="<%= @enrollment.game_id %>">
-            </div>
-          </div>
-
-          <!-- Label and input for user_order -->
-          <div class="form-group">
-            <label for="user_order" class="col-sm-2 control-label">
-              User order
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="user_order" name="user_order" placeholder="User order" class="form-control" value="<%= @enrollment.user_order %>">
-            </div>
-          </div>
-
-          <!-- Label and input for kill_time -->
-          <div class="form-group">
-            <label for="kill_time" class="col-sm-2 control-label">
-              Kill time
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="kill_time" name="kill_time" placeholder="Kill time" class="form-control" value="<%= @enrollment.kill_time %>">
-            </div>
-          </div>
+          <input type="hidden" id="user_id" name="user_id" placeholder="Game" class="form-control" value="<%= current_user.id %>">
 
           <!-- Label and input for alias -->
           <div class="form-group">
@@ -104,17 +32,7 @@
               Alias
             </label>
             <div class="col-sm-10">
-              <input type="text" id="alias" name="alias" placeholder="Alias" class="form-control" value="<%= @enrollment.alias %>">
-            </div>
-          </div>
-
-          <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="col-sm-2 control-label">
-              User
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @enrollment.user_id %>">
+              <input type="text" id="alias" name="alias" placeholder="Enter your assassin alias!" class="form-control" value="<%= @enrollment.alias %>">
             </div>
           </div>
 
