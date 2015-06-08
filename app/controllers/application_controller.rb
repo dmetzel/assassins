@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     if current_user.present?
       me = User.find(current_user.id)
 
-      if me.enrollments.where({dead: true, confirmed: false}).first != nil
+      if me.enrollments.where({dead: true, confirmed: false}).present?
         flash[:alert] = "An assassin has killed you! <a href=\"/kills/confirm\">Click here to confirm your unfortunate demise.</a>".html_safe
       end
     end
