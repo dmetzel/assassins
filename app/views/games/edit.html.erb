@@ -93,7 +93,7 @@
           </div>
 
           <!-- Label and input for status -->
-          <div class="form-group">
+          <!--<div class="form-group">
             <label for="status" class="col-sm-2 control-label">
               Status
             </label>
@@ -103,7 +103,7 @@
                 <%= options_for_select([["Open for registration",-1],["Game in progress",-2],["Finished",-3]],@game.status) %>
               </select>
             </div>
-          </div>
+          </div>-->
 
 
           <div class="form-group">
@@ -113,10 +113,10 @@
                 <label for="status" class="col-sm-2 control-label">
                  <% case @game.status %>
                  <% when -1 %>
-<input type="checkbox" id="dead" name="dead" value="-2">
+<input type="checkbox" id="status" name="status" value="-2">
 Close enrollments and start game
                  <% when -2 %>
-                 <input type="checkbox" id="dead" name="dead" value="-2">
+                 <input type="checkbox" id="status" name="status" value="-3">
 End game
                  <% when -3 %>
                  Game has been ended

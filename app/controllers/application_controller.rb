@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 
     this_enroll = Enrollment.where({user_id: user.id, game_id: game.id}).first
 
-    if this_enroll.user_order == nil
+    if this_enroll.user_order == nil || game.status == -1 || game.status == -3
 
         status = game.status
     else
