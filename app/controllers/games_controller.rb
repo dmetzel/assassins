@@ -1,7 +1,5 @@
 class GamesController < ApplicationController
-
   def index
-
     @games = current_user.games
     @games += Game.where({gamemaster_id: current_user.id})
     @games = @games.uniq

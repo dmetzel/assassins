@@ -5,146 +5,147 @@
 </div>
 
 <!-- Responsive, Isotope-based layout example -->
-  <div class="row isotope-container">
-    <% if @games.empty? %>
-    <h2>You need to join a game!</h2>
-    <% else %>
-    <% @games.each do |game| %>
-    <%  if !current_user.games.include?(game) %>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= game.title %></h3>
-        </div>
-        <div class="panel-body">
-          <dl>
 
-            <dt>Status</dt>
-            <dd>Gamemaster only</dd>
+<div class="row isotope-container">
+  <% if @games.empty? %>
+  <h2>You need to join a game!</h2>
+  <% else %>
+  <% @games.each do |game| %>
+  <%  if !current_user.games.include?(game) %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= game.title %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
 
-          </dl>
+          <dt>Status</dt>
+          <dd>Gamemaster only</dd>
 
-          <div class="btn-group btn-group-justified">
-            <a href="/games/<%= game.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <% if game.gamemaster_id == current_user.id %>
-            <a href="/games/<%= game.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
+        </dl>
 
-            <a href="/delete_game/<%= game.id %>" class="btn btn-danger">
-              <i class="fa fa-trash-o"></i>
-            </a>
-            <% end %>
-          </div>
+        <div class="btn-group btn-group-justified">
+          <a href="/games/<%= game.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+          <% if game.gamemaster_id == current_user.id %>
+          <a href="/games/<%= game.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+
+          <a href="/delete_game/<%= game.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+          <% end %>
         </div>
       </div>
     </div>
-    <% else %>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= game.title %></h3>
-        </div>
-        <div class="panel-body">
-          <dl>
-            <% @status, @target = current_target(game,current_user) %>
+  </div>
+  <% else %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= game.title %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <% @status, @target = current_target(game,current_user) %>
 
-            <% case @status %>
-            <% when -3 %>
-            <dt>Status</dt>
-            <dd>Game finished</dd>
-            <% when -2 %>
-            <dt>Status</dt>
-            <dd>Game in progress - contact Gamemaster (<%= User.find(game.gamemaster_id).first_name + " " + User.find(game.gamemaster_id).last_name %>)</dd>
-            <% when -1 %>
-            <dt>Status</dt>
-            <dd>Game not yet started</dd>
-            <% when 0 %>
-            <dt>Status</dt>
-            <dd>Killed in action</dd>
-            <% when 1 %>
-            <dt>Status</dt>
-            <dd>YOU WON!</dd>
-            <% when 2 %>
-            <dt>Status</dt>
-            <dd>Awaiting kill confirmation</dd>
-            <% else %>
-            <dt>Status</dt>
-            <dd>Active</dd>
+          <% case @status %>
+          <% when -3 %>
+          <dt>Status</dt>
+          <dd>Game finished</dd>
+          <% when -2 %>
+          <dt>Status</dt>
+          <dd>Game in progress - contact Gamemaster (<%= User.find(game.gamemaster_id).first_name + " " + User.find(game.gamemaster_id).last_name %>)</dd>
+          <% when -1 %>
+          <dt>Status</dt>
+          <dd>Game not yet started</dd>
+          <% when 0 %>
+          <dt>Status</dt>
+          <dd>Killed in action</dd>
+          <% when 1 %>
+          <dt>Status</dt>
+          <dd>YOU WON!</dd>
+          <% when 2 %>
+          <dt>Status</dt>
+          <dd>Awaiting kill confirmation</dd>
+          <% else %>
+          <dt>Status</dt>
+          <dd>Active</dd>
 
-            <dt>Your target</dt>
-            <dd><%= @target.first_name + " " %>
+          <dt>Your target</dt>
+          <dd><%= @target.first_name + " " %>
               <% if @target.enrollments.where(game_id: game.id).first.alias != "" && @target.enrollments.where(game_id: game.id).first.alias != nil %>
-              <%= "\"" + @target.enrollments.where(game_id: game.id).first.alias + "\" " %>
-              <% end %>
-              <%= @target.last_name %></dd>
-              <% end %>
+                <%= "\"" + @target.enrollments.where(game_id: game.id).first.alias + "\" " %>
+                <% end %>
+                <%= @target.last_name %></dd>
+          <% end %>
 
-            </dl>
+        </dl>
 
-            <div class="btn-group btn-group-justified">
-              <a href="/games/<%= game.id %>" class="btn btn-primary">
-                <i class="fa fa-search-plus"></i>
-              </a>
-              <% if game.gamemaster_id == current_user.id %>
-              <a href="/games/<%= game.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
+        <div class="btn-group btn-group-justified">
+          <a href="/games/<%= game.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+          <% if game.gamemaster_id == current_user.id %>
+          <a href="/games/<%= game.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
 
-              <a href="/delete_game/<%= game.id %>" class="btn btn-danger">
-                <i class="fa fa-trash-o"></i>
-              </a>
-              <% end %>
-            </div>
-          </div>
+          <a href="/delete_game/<%= game.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+          <% end %>
         </div>
       </div>
-      <% end %>
-      <% end %>
-      <% end %>
     </div>
+  </div>
+  <% end %>
+  <% end %>
+  <% end %>
+</div>
 
-    <div class="page-header">
-      <h1>
-        Games Open for Enrollment
-        <div class="pull-right">
-          <a href="/games/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i><span class="hidden-xs"> Create a new game</span></a>
-        </div>
-      </h1>
+<div class="page-header">
+  <h1>
+    Games Open for Enrollment
+    <div class="pull-right">
+      <a href="/games/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i><span class="hidden-xs"> Create a new game</span></a>
     </div>
+  </h1>
+</div>
 
-    <div class="row isotope-container">
-      <% @open_games.each do |game| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= game.title %></h3>
-          </div>
-          <div class="panel-body">
-            <dl>
-
-              <dt>Participants registered</dt>
-              <dd><%= game.users.count %></dd>
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <a href="/enrollments/new/<%= game.id %>" class="btn btn-success">
-                Enroll
-              </a>
-            </div>
-          </div>
-        </div>
-        <% end %>
+<div class="row isotope-container">
+  <% @open_games.each do |game| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= game.title %></h3>
       </div>
+      <div class="panel-body">
+        <dl>
+
+          <dt>Participants registered</dt>
+          <dd><%= game.users.count %></dd>
+        </dl>
+        <div class="btn-group btn-group-justified">
+          <a href="/enrollments/new/<%= game.id %>" class="btn btn-success">
+            Enroll
+          </a>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 
 
-      <!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->
-      <!-- JavaScript for Isotope layout and quicksearch -->
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
-      <script>
-        $(function() {
+  <!-- You can ignore the following. It's a quick and dirty example of how to get a Pinterest-style layout with quick search. -->
+  <!-- JavaScript for Isotope layout and quicksearch -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+  <script>
+    $(function() {
     // quick search regex
     var qsRegex;
 

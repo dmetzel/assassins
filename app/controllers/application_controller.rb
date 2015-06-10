@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+<<<<<<< HEAD
+=======
+  before_action :confirm_kill
+>>>>>>> parent of b21f87a... Before removing kill confirm
 
   protected
 
