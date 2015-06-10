@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :confirm_kill
+  #before_action :confirm_kill
 
   protected
 
