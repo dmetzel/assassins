@@ -17,6 +17,7 @@ class EnrollmentsController < ApplicationController
     @enrollment.game_id = params[:game_id]
     @enrollment.alias = params[:alias]
     @enrollment.user_id = params[:user_id]
+    @enrollment.confirmed = false
 
     if @enrollment.save
       redirect_to "/games", :notice => "Enrollment created successfully."
