@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :confirm_kill
+  #before_action :confirm_kill
 
   protected
 
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     if current_user.present?
 
       if current_user.enrollments.where({dead: true, confirmed: false}).present?
-        flash[:alert] = "An assassin has killed you! <a href=\"/kills/confirm\">Click here to confirm your unfortunate demise.</a>".html_safe
+        flash.now[:alert] = "An assassin has killed you! <a href=\"/kills/confirm\">Click here to confirm your unfortunate demise.</a>".html_safe
       end
     end
   end

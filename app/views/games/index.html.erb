@@ -8,7 +8,9 @@
 
 <div class="row isotope-container">
   <% if @games.empty? %>
+  <div class="col-xs-12 isotope-item">
   <h2>You need to join a game!</h2>
+  </div>
   <% else %>
   <% @games.each do |game| %>
   <%  if !current_user.games.include?(game) %>

@@ -6,6 +6,13 @@ class GamesController < ApplicationController
 
     @open_games = Game.where({status: -1}).select{|i| !i.users.include?(current_user)}
 
+    if current_user.present?
+
+      if current_user.enrollments.where({dead: true, confirmed: false}).present?
+        flash.now[:alert] = "An assassin has killed you! <a href=\"/kills/confirm\">Click here to confirm your unfortunate demise.</a>".html_safe
+      end
+    end
+
   end
 
   def show
