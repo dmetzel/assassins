@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  #before_action :confirm_kill
 
   protected
 
@@ -20,16 +19,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :avatar_url
   end
 
-  def confirm_kill
-    if current_user.present?
-      me = User.find(current_user.id)
-
-      if me.enrollments.where({dead: true, confirmed: false}).present?
-        flash[:alert] = "An assassin has killed you! <a href=\"/kills/confirm\">Click here to confirm your unfortunate demise.</a>".html_safe
-      end
-    end
-  end
-
   def current_target(game, user)
 
 
@@ -38,7 +27,7 @@ class ApplicationController < ActionController::Base
 
     if this_enroll.user_order == nil || game.status == -1 || game.status == -3
 
-        status = game.status
+      status = game.status
     else
 
       if this_enroll.dead == true
