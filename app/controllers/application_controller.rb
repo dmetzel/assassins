@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  before_action :confirm_kill
+>>>>>>> parent of b21f87a... Before removing kill confirm
 =======
   before_action :confirm_kill
 >>>>>>> parent of b21f87a... Before removing kill confirm
