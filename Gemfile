@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 #Additional gems
-gem 'devise'
+gem 'devise', '>4.x'
 gem 'starter_generators', :git => "http://github.com/rbetina/starter_generators.git", :branch => "simple"
 gem 'activeadmin', github: 'activeadmin' #, '~> 1.0.0.pre1'
 
