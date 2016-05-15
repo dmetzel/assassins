@@ -65,7 +65,7 @@
                 <dd><%= @game.kill_window %></dd>
 
                 <dt>Gamemaster</dt>
-                <dd><%= @game.gamemaster_id %></dd>
+                <dd><%= User.find(@game.gamemaster_id).first_name + " " + User.find(@game.gamemaster_id).last_name %></dd>
 
                 <dt>Time zone</dt>
                 <dd><%= @game.time_zone %></dd>
