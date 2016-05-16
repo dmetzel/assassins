@@ -3,8 +3,9 @@
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
   <p>This form is not enabled. If your forgot your password, please email Gamemaster Dan Metzel at dmetzel2016@kellogg.northwestern.edu</p>
+  <!--
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -12,6 +13,7 @@
   <div class="actions">
     <%= f.submit "Send me reset password instructions" %>
   </div>
+  -->
 <% end %>
 
 <%= render "devise/shared/links" %>
